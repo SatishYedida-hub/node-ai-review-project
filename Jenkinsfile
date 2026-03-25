@@ -1,15 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        OPENAI_API_KEY = credentials('openai-api-key')
+    }
+
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/SatishYedida-hub/node-ai-review-project.git'
-            }
-        }
-
-        stage('Install') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
@@ -21,12 +19,19 @@ pipeline {
             }
         }
 
-        stage('Get Changes') {
+        stage('Get Code Changes') {
             steps {
                 sh 'git diff HEAD~1 > changes.diff || echo "No diff"'
             }
         }
-        stage('AI Review') {
+
+        stage('Install Python Dependencies') {
+            steps {
+                sh 'pip3 install openai'
+            }
+        }
+
+        stage('AI Code Review') {
             steps {
                 sh 'python3 ai_review.py'
             }
