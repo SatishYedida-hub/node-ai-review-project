@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/SatishYedida-hub/node-ai-review-project.git'
+                git branch: 'main', url: 'https://github.com/SatishYedida-hub/node-ai-review-project.git'
             }
         }
 
