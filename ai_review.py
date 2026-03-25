@@ -19,7 +19,7 @@ Code:
 """
 
 response = client.invoke_model(
-    modelId="anthropic.claude-v2",
+    modelId="anthropic.claude-3-haiku-20240307-v1:0",
     body=json.dumps({
         "prompt": prompt,
         "max_tokens_to_sample": 300
