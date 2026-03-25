@@ -26,6 +26,11 @@ pipeline {
                 sh 'git diff HEAD~1 > changes.diff || echo "No diff"'
             }
         }
+        stage('Install Python Dependencies') {
+            steps {
+                sh 'pip3 install boto3'
+            }
+        }
 
         stage('AI Review') {
             steps {
