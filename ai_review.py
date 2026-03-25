@@ -7,15 +7,17 @@ with open("changes.diff", "r") as f:
     code_changes = f.read()
 
 prompt = f"""
-You are a senior Node.js code reviewer.
+Human: You are a senior Node.js reviewer.
 
-Review the following code and provide:
-1. Bugs
-2. Security issues
+Analyze the following code and provide:
+1. Security issues
+2. Bugs
 3. Best practices
 
 Code:
 {code_changes}
+
+Assistant:
 """
 
 response = client.invoke_model(
